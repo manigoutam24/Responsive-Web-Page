@@ -1,10 +1,21 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Card = ({ product }) => {
+  const navigate = useNavigate();
+  // console.log(product.id);
   // console.log(product);
+
+  const navigation = () => {
+    navigate(`/products/${product.id}`);
+  };
   return (
     <>
-      <div className="w-[80%] mx-auto bg-zinc-100  hover:bg-zinc-200 rounded-lg p-5 mb-3">
+      {/* <Link> */}
+      <div
+        onClick={navigation}
+        className="w-[80%] mx-auto bg-zinc-100  hover:bg-zinc-200 rounded-lg p-5 mb-3"
+      >
         <div className="w-full h-52">
           <img
             className="w-full h-full object-cover md:object-cover rounded-lg"
@@ -22,6 +33,7 @@ const Card = ({ product }) => {
           </button>
         </div>
       </div>
+      {/* </Link> */}
     </>
   );
 };

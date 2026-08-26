@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { getCartCount } = useCart();
 
   const handleLogin = () => {
     navigate("/login");
@@ -15,7 +17,7 @@ const Header = () => {
       <div className="relative flex justify-between items-center pt-6 mx-5">
         <Link
           to={"/"}
-          className="lg:text-[16px] md:text-[20px] text-[14px] font-semibold lg:ml-5 md:ml-10"
+          className="lg:text-[16px] md:text-[20px] text-[16px] font-semibold lg:ml-5 md:ml-10"
         >
           TechStore
         </Link>
@@ -64,12 +66,15 @@ const Header = () => {
             </button>
 
             <NavLink
-              to={"/cart"}
+              to="/cart"
               className={({ isActive }) =>
-                `lg:text-[16px] md:text-[14px] text-[14px] font-semibold py-1.5 px-2.5 rounded-lg hover:bg-gray-300 ${isActive ? "underline underline-offset-4 decoration-red-500" : ""}`
+                `relative lg:text-[16px] md:text-[14px] text-[14px] font-semibold
+                 py-1.5 px-2.5 rounded-lg hover:bg-gray-300
+                ${isActive ? "underline underline-offset-4 decoration-red-500" : ""}`
               }
             >
               🛒
+              <span className="ml-1">{getCartCount()}</span>
             </NavLink>
           </div>
         </nav>
@@ -135,7 +140,7 @@ const Header = () => {
                   `md:text-[14px] text-[14px] font-semibold py-1.5 px-2.5 rounded-lg hover:bg-gray-300 ${isActive ? "underline underline-offset-4 decoration-red-500" : ""}`
                 }
               >
-                🛒
+                🛒{getCartCount()}
               </NavLink>
             </div>
           </nav>

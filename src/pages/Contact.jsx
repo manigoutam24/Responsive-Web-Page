@@ -19,7 +19,7 @@ const Contact = () => {
   };
   return (
     <div className="w-full mt-5 mb-8">
-      <div className="w-full  flex justify-center items-center">
+      <div className="w-full flex justify-center items-center">
         <Form
           onSubmit={handleSubmit}
           className="bg-zinc-200 md:rounded-full rounded-lg p-5 w-85 md:w-120 md:p-20 space-y-5"
@@ -46,7 +46,7 @@ const Contact = () => {
               Email <sup className="text-[14px] text-red-500">*</sup>
             </label>
             <input
-              className="px-2 py-1 focus:ring-1 outline-0 rounded-md border-0 focus:ring-gray-400"
+              className="px-2 py-1 focus:ring-1 outline-0 rounded-md focus:ring-gray-400"
               type="email"
               id="email"
               name="email"
