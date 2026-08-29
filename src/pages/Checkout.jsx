@@ -106,7 +106,7 @@ const Checkout = () => {
               required
               value={pincode}
               onChange={(e) => setPincode(e.target.value)}
-              placeholder="Enter your name..."
+              placeholder="Enter your pincode..."
             />
           </div>
 
@@ -122,7 +122,7 @@ const Checkout = () => {
             </div>
             <div className="flex mb-2 justify-between">
               <span className="text-sm font-medium mt-2">Shipping</span>
-              <span className="text-sm font-medium mt-2">price</span>
+              <span className="text-sm font-medium mt-2">₹ 0</span>
             </div>
           </div>
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { useCart } from "../context/CartContext";
 import { MdDelete } from "react-icons/md";
 import { NavLink } from "react-router-dom";
@@ -31,7 +30,7 @@ const Cart = () => {
             >
               <div className="w-70">
                 <img
-                  className="w-full h-40 rounded-lg"
+                  className="w-full h-40 object-cover rounded-lg"
                   src={product.image}
                   alt={product.title}
                 />
@@ -107,10 +106,10 @@ const Cart = () => {
           Total Price : ₹ {getCartTotal()}{" "}
         </h2>
 
-        <div className="mt-5">
+        <div className="my-5">
           <NavLink
             to={"/checkout"}
-            className="bg-blue-600  px-5 py-3 rounded-lg text-white font-semibold"
+            className="bg-blue-600 px-5 py-3 rounded-lg text-white font-semibold"
           >
             Proceed to Checkout
           </NavLink>
