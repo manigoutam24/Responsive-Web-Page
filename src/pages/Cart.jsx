@@ -16,7 +16,7 @@ const Cart = () => {
   console.log(cart);
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-hidden">
       <h1 className="text-center text-2xl my-5 font-semibold">
         My Cart ({getCartCount()}){" "}
       </h1>
@@ -26,7 +26,7 @@ const Cart = () => {
           {cart.map((product) => (
             <div
               key={product.id}
-              className="flex p-5  outline outline-zinc-400 mx-2 rounded-lg"
+              className="flex p-5 outline outline-zinc-400 mx-2 rounded-lg"
             >
               <div className="w-70">
                 <img

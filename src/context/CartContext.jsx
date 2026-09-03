@@ -1,8 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import products from "../data/products";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  const [orders, setOrders] = useState(() => {
+    const savedOrders = localStorage.getItem("orders");
+    return savedOrders ? JSON.parse(savedOrders) : [];
+  });
+
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cart");
 
@@ -12,6 +18,10 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem("orders", JSON.stringify(orders));
+  }, [orders]);
 
   const addToCart = (product) => {
     const existingProduct = cart.find((item) => item.id === product.id);
@@ -66,6 +76,22 @@ export const CartProvider = ({ children }) => {
     }, 0);
   };
 
+  const placeOrder = () => {
+    const orderId = `TM${Math.floor(100000 + Math.random() * 900000)}`;
+
+    const order = {
+      orderId,
+      products: [...cart],
+      total: getCartTotal(),
+      status: "Placed",
+      date: new Date().toLocaleDateString(),
+    };
+
+    setOrders((prev) => [...prev, order]);
+
+    return order;
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -76,6 +102,8 @@ export const CartProvider = ({ children }) => {
         decreassQuantity,
         getCartTotal,
         getCartCount,
+        placeOrder,
+        orders,
       }}
     >
       {children}

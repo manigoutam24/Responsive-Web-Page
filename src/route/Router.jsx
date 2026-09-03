@@ -11,6 +11,7 @@ import About from "../pages/About/About";
 import ProductDetails from "../pages/ProductDetails";
 import Checkout from "../pages/Checkout";
 import OrderSuccess from "../pages/OrderSuccess";
+import Orders from "../pages/Orders";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/",
+        index: true,
         element: <Hero />,
       },
       {
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/orders",
+        element: <Orders />,
       },
     ],
   },

@@ -3,7 +3,7 @@ import { Form, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 const Checkout = () => {
-  const { getCartTotal, getCartCount } = useCart();
+  const { getCartTotal, getCartCount, placeOrder } = useCart();
 
   const navigate = useNavigate();
   const [fullname, setFullname] = useState("");
@@ -26,10 +26,11 @@ const Checkout = () => {
   };
 
   const handleNavigate = () => {
-    const orderId = `TS${Math.floor(100000 + Math.random() * 900000)}`;
+    const order = placeOrder();
+    // return order;
     navigate("/order-success", {
       state: {
-        orderId: orderId,
+        orderId: order.orderId,
         total: getCartTotal(),
       },
     });
@@ -44,13 +45,16 @@ const Checkout = () => {
       <div className="w-full flex justify-center items-center">
         <Form
           onSubmit={handleSubmit}
-          className="my-5 bg-zinc-200 md:rounded-full rounded-lg p-5 w-85 md:w-120 md:p-20 space-y-5"
+          className="my-5 bg-zinc-200 rounded-lg md:rounded-lg lg:rounded-lg p-5 w-85 md:w-120 lg:h-[82vh] md:p-5 space-y-5"
         >
-          <h2 className="text-center font-semibold text-xl">
+          <h2 className="text-center font-semibold text-xl md:text:xl lg:text-[15px]">
             Delivery Information
           </h2>
           <div className="flex flex-col">
-            <label className="text-lg font-semibold" htmlFor="fullname">
+            <label
+              className="text-lg md:text-lg lg:text-[16px] font-semibold"
+              htmlFor="fullname"
+            >
               Fullname <sup className="text-lg text-red-600">*</sup>
             </label>
             <input
@@ -65,7 +69,10 @@ const Checkout = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-lg font-semibold" htmlFor="address">
+            <label
+              className="text-lg md:text-lg lg:text-[16px] font-semibold"
+              htmlFor="address"
+            >
               Address <sup className="text-lg text-red-600">*</sup>
             </label>
             <input
@@ -80,7 +87,10 @@ const Checkout = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-lg font-semibold" htmlFor="city">
+            <label
+              className="text-lg md:text-lg lg:text-[16px] font-semibold"
+              htmlFor="city"
+            >
               City <sup className="text-lg text-red-600">*</sup>
             </label>
             <input
@@ -95,7 +105,10 @@ const Checkout = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-lg font-semibold" htmlFor="pincode">
+            <label
+              className="text-lg md:text-lg lg:text-[16px] font-semibold"
+              htmlFor="pincode"
+            >
               Pincode <sup className="text-lg text-red-600">*</sup>
             </label>
             <input
@@ -110,8 +123,10 @@ const Checkout = () => {
             />
           </div>
 
-          <div className="rounded-lg mt-5">
-            <h1 className="text-xl font-semibold">Order Summary</h1>
+          <div className="rounded-lg mt-3">
+            <h1 className="text-lg md:text-lg lg:text-[18px] font-semibold">
+              Order Summary
+            </h1>
             <div className="flex justify-between">
               <span className="text-sm font-medium mt-2">
                 Subtotal ({getCartCount()})
@@ -131,7 +146,9 @@ const Checkout = () => {
               Total Price : ₹ {getCartTotal()}{" "}
             </h2> */}
             <div className="flex justify-between">
-              <span className="text-lg font-semibold">Total Price</span>
+              <span className="text-lg md:text-lg lg:text-[16px] font-semibold">
+                Total Price
+              </span>
               <span className="text-lg font-semibold">₹ {getCartTotal()}</span>
             </div>
 
@@ -139,7 +156,7 @@ const Checkout = () => {
               <button
                 type="submit"
                 onClick={handleNavigate}
-                className="w-full bg-blue-600  px-5 py-3 rounded-lg text-white font-semibold"
+                className="w-full bg-blue-600 py-2 rounded-lg text-white font-semibold"
               >
                 Place Order
               </button>
