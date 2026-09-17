@@ -48,7 +48,7 @@ const ProductDetails = () => {
         </div>
         <p className="px-5 text-[13px] text-zinc-500">{product?.description}</p>
         <p className="px-5 font-semibold text-xl mt-1 text-purple-600">
-          ₹{product?.price}
+          ₹{(product?.price).toLocaleString("en-In")}
         </p>
 
         <div className="flex items-center gap-2 mx-5 mt-1.5 text-green-500">

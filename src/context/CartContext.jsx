@@ -84,7 +84,9 @@ export const CartProvider = ({ children }) => {
       products: [...cart],
       total: getCartTotal(),
       status: "Placed",
+      // status:"Delivered",
       date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
     };
 
     setOrders((prev) => [...prev, order]);
